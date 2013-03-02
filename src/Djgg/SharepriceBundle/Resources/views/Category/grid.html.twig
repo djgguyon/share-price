@@ -1,0 +1,12 @@
+{% extends "DjggSharepriceBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Category{% endblock %}
+
+{% block DjggShareprice_body %}
+
+<p class="titre"><span>Category list</span>
+<a class="action_add" href="{{ path('djgg_shareprice_category_new') }}">Add a category</a>
+</p>
+
+{{ grid(grid) }}
+{% endblock %}

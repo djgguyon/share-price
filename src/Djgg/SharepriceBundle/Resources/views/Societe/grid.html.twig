@@ -1,0 +1,12 @@
+{% extends "DjggSharepriceBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Society{% endblock %}
+
+{% block DjggShareprice_body %}
+
+<p class="titre"><span>Society list</span>
+<a class="action_add" href="{{ path('djgg_shareprice_society_new') }}">Add a society</a>
+</p>
+
+{{ grid(grid) }}
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "DgMercurialeBundle::layout.html.twig" %}
+
+{% block title %}Accueil - {{ parent() }}{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/addresspicker/themes/base/jquery.ui.all.css') }}" type="text/css" />
+<link rel="stylesheet" href="{{ asset('css/addresspicker/demo.css') }}" type="text/css" />
+{{ parent() }}{# parent après le spécifique googlemap sinon, interférence avec bootstrap #}
+{% endblock %}
+
+{% block DgMercuriale_body %}
+
+<p class="titre"><span>Nouvelle société</span>
+<a class="action_edit" href="{{ path('societe_edit', {'id' :  entity.id }) }}">Modifier</a>
+</p> 
+
+<form action="{{ path('societe_create') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <p>
+        <button type="submit">Create</button>
+    </p>
+</form>
+
+<div id="map" class="gmap_address_map"></div>
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="{{ asset('js/jquery-ui-1.9.2.custom.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery.ui.addresspicker.js') }}"></script>
+<script>
+$(function() {
+            var addresspickerMap = $("#dg_mercurialebundle_societetype_address_address").addresspicker({
+                regionBias: "fr",
+                elements: {
+                    map: "#map",
+                    locality: '#dg_mercurialebundle_societetype_address_locality',
+                    country:  '#dg_mercurialebundle_societetype_address_country',
+                    administrative_area_level_2: '#dg_mercurialebundle_societetype_address_administrativeAreaLevel2',
+                    administrative_area_level_1: '#dg_mercurialebundle_societetype_address_administrativeAreaLevel1',
+                    postal_code: '#dg_mercurialebundle_societetype_address_postalCode',
+                    lat:      "#dg_mercurialebundle_societetype_address_lat",
+                    lng:      "#dg_mercurialebundle_societetype_address_lng"
+                }
+            });
+            var gmarker = addresspickerMap.addresspicker("marker");
+            gmarker.setVisible(true);
+            addresspickerMap.addresspicker("updatePosition");
+    });
+</script>
+
+{% endblock javascripts %}

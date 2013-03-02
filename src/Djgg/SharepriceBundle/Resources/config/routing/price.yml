@@ -1,0 +1,34 @@
+djgg_shareprice_price:
+    pattern:  /
+    defaults: { _controller: "DjggSharepriceBundle:Price:grid" }
+
+djgg_shareprice_price_grid:
+    pattern:  /grid
+    defaults: { _controller: "DjggSharepriceBundle:Price:grid" }
+
+djgg_shareprice_price_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "DjggSharepriceBundle:Price:show" }
+
+djgg_shareprice_price_new:
+    pattern:  /new
+    defaults: { _controller: "DjggSharepriceBundle:Price:new" }
+
+djgg_shareprice_price_create:
+    pattern:  /create
+    defaults: { _controller: "DjggSharepriceBundle:Price:create" }
+    requirements: { _method: post }
+
+djgg_shareprice_price_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "DjggSharepriceBundle:Price:edit" }
+
+djgg_shareprice_price_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "DjggSharepriceBundle:Price:update" }
+    requirements: { _method: post }
+
+djgg_shareprice_price_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "DjggSharepriceBundle:Price:delete" }
+    requirements: { _method: post }

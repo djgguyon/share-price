@@ -1,0 +1,102 @@
+{% extends "DgMercurialeBundle::layout.html.twig" %}
+
+{% block title %}Accueil - {{ parent() }}{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="{{ asset('/css/datagrid.css') }}"/>
+{% endblock %}
+
+{% block DgMercuriale_body %}
+
+<p class="titre"><span>Liste des sociétés</span>
+<a class="action_add" href="{{ path('societe_new') }}">Ajouter une société</a>
+</p>
+
+{% embed 'DgDataGridBundle:Grid:grid.html.twig' with {'grid': grid} %}
+
+{% block kit_grid_before_table %}
+<!-- <form action="{#{ path('fichiere55_batch') }#}" method="POST">-->
+{% endblock %}
+
+{% block kit_grid_thead_before_column %}
+<th><input type="checkbox" id="list_batch_checkbox" /></th>
+{% endblock %}
+{% block kit_grid_thead_column %}
+<th>Action</th>
+{% endblock %}
+
+{% block kit_grid_tbody_before_column %}
+<td class="list_field_batch"><input type="checkbox" name=idx[] value="{{ entity.id }}" /></td>
+{% endblock %}
+        
+{% block kit_grid_tbody_column %}
+<td><a class="action_edit" href="{{ path('societe_edit', { 'id': entity.id}) }}">Modifier</a></td>
+{% endblock %}
+        
+{% block kit_grid_after_table %}
+<select name="action">
+<option value="delete">Supprimer</option>
+<!-- <option value="exportCSV">Export CSV</option>
+<option value="exportXML">Export XML</option>
+<option value="exportJSON">Export JSON</option>-->
+</select> 
+<button type="submit">Valider</button>
+</form>
+{% endblock %}
+
+{% endembed %}
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript"> 
+// modification.css surcharge les lignes odd de la classe table-striped du bootstrap pour les row de classe list_row_selected
+jQuery(document).ready(function($){
+	$('#list_batch_checkbox').click(function(){
+		$(this).closest('table').find("td input[type='checkbox']")
+			.attr('checked', $(this).is(':checked'))
+			.parent().parent().toggleClass('list_row_selected', $(this).is(':checked'));
+		});
+	$("td.list_field_batch input[type='checkbox']").change(function(){
+		$(this).parent().parent().toggleClass('list_row_selected', $(this).is(':checked'));
+		});
+	});
+</script> 
+
+<script type="text/javascript">
+(function() {
+    var insertParamInQueryString = function (key, value)
+    {
+        key = escape(key); value = escape(value);
+        var kvp = document.location.search.substr(1).split('&');
+        var i=kvp.length; var x; while(i--)
+        {
+            x = kvp[i].split('=');
+            if (x[0]==key)
+            {
+                x[1] = value;
+                kvp[i] = x.join('=');
+                break;
+            }
+        }
+        if(i<0) {
+            kvp[kvp.length] = [key,value].join('=');
+        }
+        //this will reload the page, it's likely better to store this until finished
+        document.location.search = kvp.join('&');
+    }
+    $('#{{grid.filterFormName}}_form').submit(function(e) {
+        e.preventDefault();
+        value = $('#{{grid.filterFormName}}').val();
+        insertParamInQueryString('{{grid.filterFormName}}',value);
+    });
+    $('#{{grid.filterFormName}}_reset_button').click(function(e) {
+        e.preventDefault();
+        insertParamInQueryString('{{grid.filterFormName}}',"");
+    });
+
+})();
+</script>
+{% endblock javascripts %}

@@ -1,0 +1,26 @@
+{% extends "DgMercurialeBundle::layout.html.twig" %}
+
+{% block title %}
+	Ajouter un tarif - {{ parent() }}
+{% endblock %}
+
+{% block DgMercuriale_body %}
+
+<h1>Tarif creation</h1>
+
+<form action="{{ path('tarif_create') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <p>
+        <button type="submit">Create</button>
+    </p>
+</form>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('tarif') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+
+    {% endblock %}

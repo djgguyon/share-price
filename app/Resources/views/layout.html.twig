@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>{% block title %}SharePrice{% endblock %}</title>
+		{% block stylesheets %}
+		{#% stylesheets '@DjggSharepriceBundle/Resources/public/css/*' %#}
+			<link rel="stylesheet" href="{#{ asset_url }#}" />
+			<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" type="text/css" />
+			<link rel="stylesheet" href="{{ asset('css/modification.css') }}" type="text/css" />
+		{#% endstylesheets %#}
+		{% endblock %}
+		<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+	</head>
+
+{% block balise_body %}<body{% endblock %}>
+
+{% block header_menu %}
+<!--  DEBUT TOPNAVBAR, déplacée avec suppression class navbar-fixed-top -->
+<!-- <div class="navbar navbar-fixed-top"> -->
+<!-- </div> -->
+<!-- FIN TOPNAVBAR -->
+
+<!-- DEBUT CONTAINER "container-fluid" ou "container"-->
+<!-- <div class="container-fluid">-->
+<!-- <div id="header" class="hero-unit">-->
+
+<div id="row">
+<!-- DEBUT HEADER -->
+<div id="corner">
+<ul>
+	<li class="selected"><a href="{{ path('homepage') }}">Home</a></li>
+</ul>
+</div>
+
+<div id="header">
+		<a href="{{ path('homepage') }}"><h4>SharePrice</h4></a>
+		<span>Plateforme d'échange d'information.</span> 
+</div>
+<!-- FIN HEADER -->
+
+<!-- DEBUT NAVBAR -->
+<div class="navbar">
+  <div class="navbar-inner">
+    <!-- <a class="brand" href="/">e55</a>-->
+    <ul class="nav">
+    	<li class="dropdown">
+    		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+    			Données référentielles<b class=caret></b>
+    		</a>
+    		<ul class="dropdown-menu">
+				<li><a href="{{ path('djgg_shareprice_category_grid') }}">Category</a></li>
+				<li><a href="{{ path('djgg_shareprice_group_grid') }}">Group</a></li>
+				<li><a href="{{ path('djgg_shareprice_society_grid') }}">Society</a></li>
+				<li><a href="{{ path('djgg_shareprice_price_grid') }}">Price</a></li>
+				<li><a href="{{ path('djgg_shareprice_product_grid') }}">Product</a></li>
+    		</ul>
+    	</li>
+		<li class="divider-vertical"></li>
+      	<!-- <li class="dropdown">
+    		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+      			Bundle_user<b class="caret"></b>
+    		</a>
+    		<ul class="dropdown-menu">
+				{#% if is_granted("IS_AUTHENTICATED_REMEMBERED") %#}
+    			{#{ app.user.username }#}<a href="{#{ path('fos_user_security_logout') }#}" class="btn btn-small btn-primary">
+		    	<i class="icon-user icon-white"></i> Déconnexion</a> 
+				<li><a href="{#{ path('fos_user_profile_show') }#}">Voir mon profil</a></li>
+    				<li><a href="{#{ path('fos_user_profile_edit') }#}">Editer mon profil</a></li>
+				{#% else %#}
+    				<a href="{#{ path('fos_user_security_login') }#}">Connexion</a>
+				{#% endif %#}
+    		</ul>
+		</li>-->
+		<!-- 
+      	<li><a href="{#{ path('sonata_admin_dashboard') }#}">Administration</a></li>
+      	<li class="divider-vertical"></li>-->
+     
+      </ul>
+
+      	<ul class="nav pull-right">
+    	<li>
+		{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+			<a href="{{ path('fos_user_security_logout') }}"><i class="icon-user icon-white"></i> Déconnexion {{ app.user.username }}</a>
+		{% else %}
+    		<a href="{{ path('fos_user_security_login') }}"><i class="icon-user icon-white"></i> Connexion</a>
+		{% endif %}
+		</li>
+     </ul>      
+  </div>
+</div>
+<!-- FIN NAVBAR -->
+</div>
+<!-- FIN ROW -->
+{% endblock %}
+
+<!-- DEBUT CONTAINER "container-fluid" ou "container"-->
+<div class="container-fluid">
+	
+	<!-- DEBUT ROW -->
+	<div class="row-fluid">
+	<!-- DEBUT MENU GAUCHE -->
+	<!-- <div id="menu" class="span3"> -->
+	
+	<!-- </div> -->
+	<!-- FIN MENU GAUCHE -->
+	
+	<!--  DEBUT CONTENT -->
+	<div id="content" class="span12">
+		{% block body %}
+		{% endblock %}
+	</div>
+	<!-- FIN CONTENT -->
+	</div>
+	<!-- FIN ROW -->
+
+<!-- <hr />-->
+</div>
+<!-- FIN CONTAINER -->
+
+<footer><p>djgguyon &copy;2013.</p></footer>
+
+<!-- DEBUT SCRIPTS -->
+	{% block javascripts %}
+	{#% javascripts '@DjggSharepriceBundle/Resources/public/js/*' output='js/compiled/main.js' %#}
+		<script src="{#{ asset_url }#}"></script>
+	{#% endjavascripts %#}
+			<script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+			<script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+	{% endblock %}
+<!-- FIN SCRIPTS -->
+
+	</body>
+</html>

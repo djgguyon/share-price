@@ -1,0 +1,18 @@
+{% extends "DjggSharepriceBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - new price{% endblock %}
+
+{% block DjggShareprice_body %}
+
+<p class="titre"><span>New price</span>
+<a class="action_list" href="{{ path('djgg_shareprice_price_grid') }}">Back to the list</a>
+</p> 
+
+<form action="{{ path('djgg_shareprice_price_create') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <p>
+        <button type="submit">Create</button>
+    </p>
+</form>
+
+{% endblock %}

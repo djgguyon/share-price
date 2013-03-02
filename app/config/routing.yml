@@ -1,0 +1,12 @@
+homepage:
+    pattern:  /
+    defaults: { _controller: DjggSharepriceBundle:Category:grid }
+
+djgg_user:
+    resource: "@DjggUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+djgg_shareprice:
+    resource: "@DjggSharepriceBundle/Resources/config/routing.yml"
+    prefix:   /sp
+    

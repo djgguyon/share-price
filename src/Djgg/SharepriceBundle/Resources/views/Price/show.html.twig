@@ -1,0 +1,42 @@
+{% extends "DjggSharepriceBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }} price{% endblock %}
+
+{% block DjggShareprice_body %}
+
+<p class="titre"><span>Price {{ entity.id }}</span>
+<a class="action_list" href="{{ path('djgg_shareprice_group_grid') }}">Back to the list</a>
+</p>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ entity.price }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ entity.date|date('Y-m-d H:i:s') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('djgg_shareprice_price_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('djgg_shareprice_price_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>
+
+{% endblock %}

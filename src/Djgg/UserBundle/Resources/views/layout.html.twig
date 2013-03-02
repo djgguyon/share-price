@@ -1,0 +1,23 @@
+{# On étend notre layout à nous #}
+{% extends "::layout.html.twig" %}
+
+{% block title %}Utilisateur{% endblock %}
+
+{% block header_menu %}
+{{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+		{% for key, message in app.session.getFlashes() %}
+        <div class="{{ key }}">
+            {{ message|trans({}, 'FOSUserBundle') }}
+        </div>
+        {% endfor %}
+
+        <div>
+            {% block fos_user_content %}
+            {% endblock fos_user_content %}
+        </div>
+
+{% endblock %}

@@ -1,0 +1,34 @@
+djgg_shareprice_category:
+    pattern:  /
+    defaults: { _controller: "DjggSharepriceBundle:Category:grid" }
+
+djgg_shareprice_category_grid:
+    pattern:  /grid
+    defaults: { _controller: "DjggSharepriceBundle:Category:grid" }
+
+djgg_shareprice_category_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "DjggSharepriceBundle:Category:show" }
+
+djgg_shareprice_category_new:
+    pattern:  /new
+    defaults: { _controller: "DjggSharepriceBundle:Category:new" }
+
+djgg_shareprice_category_create:
+    pattern:  /create
+    defaults: { _controller: "DjggSharepriceBundle:Category:create" }
+    requirements: { _method: post }
+
+djgg_shareprice_category_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "DjggSharepriceBundle:Category:edit" }
+
+djgg_shareprice_category_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "DjggSharepriceBundle:Category:update" }
+    requirements: { _method: post }
+
+djgg_shareprice_category_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "DjggSharepriceBundle:Category:delete" }
+    requirements: { _method: post }

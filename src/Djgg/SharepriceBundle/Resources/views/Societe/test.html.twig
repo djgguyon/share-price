@@ -1,0 +1,62 @@
+{% extends "DgMercurialeBundle::layout.html.twig" %}
+
+{% block title %}Accueil - {{ parent() }}{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('css/addresspicker/themes/base/jquery.ui.all.css') }}" type="text/css" />
+	<link rel="stylesheet" href="{{ asset('css/addresspicker/demo.css') }}" type="text/css" />
+{% endblock %}
+
+{% block DgMercuriale_body %}
+
+<h1>Societe creation</h1>
+
+<div class="demo">
+  <div>
+  	<div class='input'>
+	    <label>Address : </label> <input id="addresspicker_map" />   <br/>
+			<label>Locality: </label> <input id="locality" disabled=disabled> <br/>
+			<label>District: </label> <input id="administrative_area_level_2" disabled=disabled> <br/>
+			<label>State/Province: </label> <input id="administrative_area_level_1" disabled=disabled> <br/>
+			<label>Country:  </label> <input id="country" disabled=disabled> <br/>
+			<label>Postal Code: </label> <input id="postal_code" disabled=disabled> <br/>
+			<label>Lat:      </label> <input id="lat" disabled=disabled> <br/>
+			<label>Lng:      </label> <input id="lng" disabled=disabled> <br/>
+      <label>Type:     </label> <input id="type" disabled=disabled /> <br/>
+    </div>
+    <div id="map"></div>
+    <div id="legend">You can drag and drop the marker to the correct location</div>
+  </div>
+</div><!-- End demo -->
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="{{ asset('js/jquery-ui-1.9.2.custom.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery.ui.addresspicker.js') }}"></script>
+	<script>
+	$(function() {
+		var addresspickerMap = $( "#addresspicker_map" ).addresspicker({
+			regionBias: "fr",
+		  elements: {
+		    map:      "#map",
+		    lat:      "#lat",
+		    lng:      "#lng",
+		    locality: '#locality',
+		    administrative_area_level_2: '#administrative_area_level_2',
+		    administrative_area_level_1: '#administrative_area_level_1',
+		    country:  '#country',
+		    postal_code: '#postal_code',
+        type:    '#type' 
+		  }
+		});
+		var gmarker = addresspickerMap.addresspicker( "marker");
+		gmarker.setVisible(true);
+		addresspickerMap.addresspicker( "updatePosition");
+		
+	});
+	</script>
+{% endblock javascripts %}

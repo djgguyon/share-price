@@ -1,0 +1,27 @@
+{% extends "DjggSharepriceBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }} edit category{% endblock %}
+
+{% block DjggShareprice_body %}
+
+<p class="titre"><span>Edit category {{ entity.id }} : {{ entity.name }}</span>
+<a class="action_list" href="{{ path('djgg_shareprice_category_grid') }}">Back to the list</a>
+</p>
+
+<form action="{{ path('djgg_shareprice_category_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+    {{ form_widget(edit_form) }}
+    <p>
+        <button type="submit">Edit</button>
+    </p>
+</form>
+
+<ul class="record_actions">
+    <li>
+        <form action="{{ path('djgg_shareprice_category_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>
+
+{% endblock %}

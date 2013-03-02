@@ -1,0 +1,20 @@
+djgg_shareprice_product:
+    resource: "@DjggSharepriceBundle/Resources/config/routing/product.yml"
+    prefix:   /product
+    
+djgg_shareprice_price:
+    resource: "@DjggSharepriceBundle/Resources/config/routing/price.yml"
+    prefix:   /price
+    
+djgg_shareprice_society:
+    resource: "@DjggSharepriceBundle/Resources/config/routing/society.yml"
+    prefix:   /society
+
+djgg_shareprice_group:
+    resource: "@DjggSharepriceBundle/Resources/config/routing/group.yml"
+    prefix:   /group
+    
+djgg_shareprice_category:
+    resource: "@DjggSharepriceBundle/Resources/config/routing/category.yml"
+    prefix:   /category
+    
